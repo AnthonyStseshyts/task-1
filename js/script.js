@@ -36,33 +36,61 @@
 
 // Sample of the task 2
 
-function B() {
-  this.counter = 0;
+// function B() {
+//   this.counter = 0;
+// }
+
+// function inherit(parentFunc, data) {
+//   let newObj = Object.create(parentFunc);
+
+//   let childFunc = function() {
+//     parentFunc.apply(this);
+//   };
+
+//   childFunc.prototype = Object.create(parentFunc);
+
+//   for (let key in data) {
+//     childFunc.prototype[key] = data[key];
+//   }
+
+//   return childFunc;
+// }
+
+// const F = inherit(B, {
+//   construcor: function F() {
+//     this.name = "foo";
+//   },
+//   getCounter: function() {
+//     return this.counter;
+//   }
+// });
+
+// const f = new F();
+// console.log(f.getCounter()); // 0;
+
+// Sample of the task 3
+
+function takeValue(obj) {
+  let str = "";
+  for (let val of Object.values(obj)) {
+    if (val === null || val === undefined) val += "";
+    if (typeof val === "object") {
+      str += takeValue(val);
+    } else {
+      str += val + ",";
+    }
+  }
+  return str.split(" ");
 }
 
-function inherit(parentFunc, data) {
-  let newObj = Object.create(parentFunc);
-
-  let childFunc = function() {
-    parentFunc.apply(this);
-  };
-
-  childFunc.prototype = Object.create(parentFunc);
-  for (let key in data) {
-    childFunc.prototype[key] = data[key];
-  }
-
-  return childFunc;
-}
-
-const F = inherit(B, {
-  construcor: function F() {
-    this.name = "foo";
-  },
-  getCounter: function() {
-    return this.counter;
-  }
-});
-
-const f = new F();
-console.log(f.getCounter()); // 0;
+console.log(
+  takeValue({
+    name: "‘Vasya’",
+    address: {
+      country: "‘Belarus’",
+      city: "‘Minsk’"
+    },
+    phone: null,
+    friends: ["‘Petya’", "Kolya", "‘Sveta’"]
+  })
+);
