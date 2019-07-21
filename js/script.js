@@ -70,27 +70,29 @@
 
 // Sample of the task 3
 
-function takeValue(obj) {
-  let str = "";
-  for (let val of Object.values(obj)) {
-    if (val === null || val === undefined) val += "";
-    if (typeof val === "object") {
-      str += takeValue(val);
-    } else {
-      str += val + ",";
-    }
-  }
-  return str.split(" ");
-}
+// function extractValues(obj, arr = []) {
+//   for (var val of Object.values(obj)) {
+//     arr = [...arr];
+//     if (Array.isArray(val)) {
+//       arr.push(...val);
+//     } else if (typeof val === "object" && val !== null) {
+//       arr.push(...extractValues(val));
+//     } else {
+//       arr.push(val);
+//     }
+//   }
+//   return arr;
+// }
 
-console.log(
-  takeValue({
-    name: "‘Vasya’",
-    address: {
-      country: "‘Belarus’",
-      city: "‘Minsk’"
-    },
-    phone: null,
-    friends: ["‘Petya’", "Kolya", "‘Sveta’"]
-  })
-);
+// console.log(
+//   extractValues({
+//     name: "‘Vasya’",
+//     address: {
+//       country: "‘Belarus’",
+//       city: "‘Minsk’"
+//     },
+//     phone: null,
+//     friends: ["‘Petya’", "‘Kolya’", "‘Sveta’"]
+//   })
+// );
+
